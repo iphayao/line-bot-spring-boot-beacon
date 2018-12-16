@@ -1,12 +1,8 @@
 package com.iphayao.linebot;
 
-import com.iphayao.linebot.model.BeaconMessage;
 import com.linecorp.bot.client.LineMessagingClient;
 import com.linecorp.bot.model.ReplyMessage;
 import com.linecorp.bot.model.event.BeaconEvent;
-import com.linecorp.bot.model.event.MessageEvent;
-import com.linecorp.bot.model.event.beacon.BeaconContent;
-import com.linecorp.bot.model.event.message.TextMessageContent;
 import com.linecorp.bot.model.message.Message;
 import com.linecorp.bot.model.message.TextMessage;
 import com.linecorp.bot.model.response.BotApiResponse;
@@ -30,8 +26,18 @@ public class LienBotController {
     @EventMapping
     public void handleBeaconEvent(BeaconEvent event) {
         log.info(event.toString());
-        BeaconContent content = event.getBeacon();
-        reply(event.getReplyToken(), new BeaconMessage(content));
+        reply(event.getReplyToken(), event.toString());
+    }
+
+    private void reply(@NonNull  String replyToken, @NonNull String message) {
+        if(replyToken.isEmpty()) {
+            throw new IllegalArgumentException("replyToken is not empty");
+        }
+
+        if(message.length() > 1000) {
+            message = message.substring(0, 1000 - 2) + "...";
+        }
+        this.reply(replyToken, new TextMessage(message));
     }
 
     private void reply(@NonNull String replyToken, @NonNull Message message) {
