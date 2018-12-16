@@ -1,4 +1,4 @@
-package com.iphayao.linebotspringbootbeacon;
+package com.iphayao.linebot;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

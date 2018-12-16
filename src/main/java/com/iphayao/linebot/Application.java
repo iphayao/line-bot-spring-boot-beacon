@@ -1,13 +1,13 @@
-package com.iphayao.linebotspringbootbeacon;
+package com.iphayao.linebot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class LineBotSpringBootBeaconApplication {
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(LineBotSpringBootBeaconApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 
 }
